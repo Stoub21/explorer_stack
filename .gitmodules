@@ -1,3 +1,7 @@
 [submodule "libs/orthopus_vesc"]
 	path = libs/orthopus_vesc
-	url = ../orthopus_vesc.git
+	url = https://github.com/ORTHOPUS-EXPLORER/orthopus_vesc.git
+[submodule "libs/qontrol"]
+	path = libs/qontrol
+	url = https://gitlab.inria.fr/auctus-team/components/control/qontrol.git
+	branch = master
