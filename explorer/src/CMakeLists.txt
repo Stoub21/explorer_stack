@@ -11,6 +11,11 @@ set(CONTROLLER_DEPENDENCIES
   hardware_interface
   realtime_tools
   control_msgs
+  rclcpp
+  rclcpp_lifecycle
+  Eigen3
+  pinocchio
+  Qontrol
 )
 
 find_package(ament_cmake REQUIRED)

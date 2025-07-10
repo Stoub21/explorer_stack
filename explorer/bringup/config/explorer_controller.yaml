@@ -6,9 +6,9 @@ controller_manager:
       type: joint_state_broadcaster/JointStateBroadcaster
       auto_start: false
 
-    # explorer_controller:
-    #   type: ros2_control_explorer/RobotController
-    #   auto_start: false
+    explorer_controller:
+      type: ros2_control_explorer/RobotController
+      auto_start: false
 
     forward_position_controller:
       type: forward_command_controller/ForwardCommandController
@@ -22,23 +22,21 @@ controller_manager:
       type: forward_command_controller/ForwardCommandController
       auto_start: false
 
-# explorer_controller:
-#   ros__parameters:
-#     joints:
-#       - joint_1
-#       - joint_2
-#       - joint_3
-#       - joint_4
-#       - joint_5
-#       - joint_6
-
-#     command_interfaces:
-#       - position
-#       - velocity
-
-#     state_interfaces:
-#       - position
-#       - velocity
+explorer_controller:
+  ros__parameters:
+    joints:
+      - joint_1
+      - joint_2
+      - joint_3
+      - joint_4
+      - joint_5
+      - joint_6
+    command_interfaces:
+      - position
+      - velocity
+    state_interfaces:
+      - position
+      - velocity
 
 forward_position_controller:
   ros__parameters:

@@ -6,11 +6,9 @@ Panels:
       Expanded:
         - /Global Options1
         - /Status1
-        - /TF1
         - /TF1/Frames1
-        - /RobotModel1
       Splitter Ratio: 0.5
-    Tree Height: 631
+    Tree Height: 637
   - Class: rviz_common/Selection
     Name: Selection
   - Class: rviz_common/Tool Properties
@@ -54,47 +52,162 @@ Visualization Manager:
       Enabled: true
       Frame Timeout: 15
       Frames:
-        All Enabled: true
+        All Enabled: false
+        backrest_fixation:
+          Value: false
         base_link:
           Value: true
+        camera_explorer:
+          Value: false
+        chassis:
+          Value: false
+        fixation:
+          Value: false
+        fixation_front_left:
+          Value: false
+        fixation_front_right:
+          Value: false
+        fixation_rear_left:
+          Value: false
+        fixation_rear_right:
+          Value: false
+        foam_backrest:
+          Value: false
+        foam_headrest:
+          Value: false
+        foam_seat:
+          Value: false
         ft_frame:
-          Value: true
+          Value: false
+        head_left_right:
+          Value: false
+        head_up_down:
+          Value: false
+        headrest:
+          Value: false
+        headrest_fixation:
+          Value: false
+        headrest_fixation2:
+          Value: false
+        left_external_rod:
+          Value: false
+        left_finger_first_phalanx:
+          Value: false
+        left_finger_last_phalanx:
+          Value: false
+        left_front_wheel:
+          Value: false
+        left_rear_wheel:
+          Value: false
+        left_wheel:
+          Value: false
         link_1:
           Value: true
         link_2:
-          Value: true
+          Value: false
         link_3:
-          Value: true
+          Value: false
         link_4:
-          Value: true
+          Value: false
         link_5:
+          Value: false
+        motor:
+          Value: false
+        odom:
           Value: true
-        link_6:
-          Value: true
+        palm_top_shell:
+          Value: false
+        right_external_rod:
+          Value: false
+        right_finger_first_phalanx:
+          Value: false
+        right_finger_last_phalanx:
+          Value: false
+        right_front_wheel:
+          Value: false
+        right_rear_wheel:
+          Value: false
+        right_wheel:
+          Value: false
+        seat:
+          Value: false
+        seat_fixation:
+          Value: false
+        structure:
+          Value: false
         tool0:
           Value: true
-        world:
-          Value: true
+        user_vision_camera:
+          Value: false
       Marker Scale: 0.5
       Name: TF
       Show Arrows: false
       Show Axes: true
-      Show Names: false
+      Show Names: true
       Tree:
-        world:
-          base_link:
-            link_1:
-              link_2:
-                link_3:
-                  link_4:
-                    link_5:
-                      link_6:
-                        ft_frame:
-                          tool0:
-                            {}
+        odom:
+          chassis:
+            fixation_front_left:
+              left_front_wheel:
+                {}
+            fixation_front_right:
+              right_front_wheel:
+                {}
+            fixation_rear_left:
+              left_rear_wheel:
+                {}
+            fixation_rear_right:
+              right_rear_wheel:
+                {}
+            left_wheel:
+              {}
+            right_wheel:
+              {}
+            seat_fixation:
+              backrest_fixation:
+                foam_backrest:
+                  {}
+                headrest_fixation:
+                  headrest_fixation2:
+                    headrest:
+                      foam_headrest:
+                        head_left_right:
+                          head_up_down:
+                            user_vision_camera:
+                              {}
+              seat:
+                fixation:
+                  base_link:
+                    link_1:
+                      link_2:
+                        link_3:
+                          link_4:
+                            link_5:
+                              structure:
+                                camera_explorer:
+                                  {}
+                                ft_frame:
+                                  tool0:
+                                    {}
+                                left_external_rod:
+                                  left_finger_last_phalanx:
+                                    {}
+                                left_finger_first_phalanx:
+                                  {}
+                                motor:
+                                  {}
+                                palm_top_shell:
+                                  {}
+                                right_external_rod:
+                                  right_finger_last_phalanx:
+                                    {}
+                                right_finger_first_phalanx:
+                                  {}
+                foam_seat:
+                  {}
       Update Interval: 0
       Value: true
-    - Alpha: 1
+    - Alpha: 0.699999988079071
       Class: rviz_default_plugins/RobotModel
       Collision Enabled: false
       Description File: ""
@@ -112,7 +225,61 @@ Visualization Manager:
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
+        backrest_fixation:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
         base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        camera_explorer:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        chassis:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        fixation:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        fixation_front_left:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        fixation_front_right:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        fixation_rear_left:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        fixation_rear_right:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        foam_backrest:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        foam_headrest:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        foam_seat:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -121,6 +288,59 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
+        head_left_right:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        head_up_down:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        headrest:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        headrest_fixation:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        headrest_fixation2:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_external_rod:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_finger_first_phalanx:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_finger_last_phalanx:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_front_wheel:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_rear_wheel:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_wheel:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
         link_1:
           Alpha: 1
           Show Axes: false
@@ -146,7 +366,57 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        link_6:
+        motor:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        palm_top_shell:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_external_rod:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_finger_first_phalanx:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_finger_last_phalanx:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_front_wheel:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_rear_wheel:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_wheel:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        seat:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        seat_fixation:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        structure:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -155,7 +425,7 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        world:
+        user_vision_camera:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -167,6 +437,46 @@ Visualization Manager:
       Update Interval: 0
       Value: true
       Visual Enabled: true
+    - Alpha: 0.800000011920929
+      Axes Length: 1
+      Axes Radius: 0.10000000149011612
+      Class: rviz_default_plugins/Pose
+      Color: 255; 25; 0
+      Enabled: true
+      Head Length: 0.05000000074505806
+      Head Radius: 0.05000000074505806
+      Name: Pose
+      Shaft Length: 0.20000000298023224
+      Shaft Radius: 0.019999999552965164
+      Shape: Arrow
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        Filter size: 10
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /debug/current_pose
+      Value: true
+    - Alpha: 0.800000011920929
+      Axes Length: 1
+      Axes Radius: 0.10000000149011612
+      Class: rviz_default_plugins/Pose
+      Color: 0; 255; 0
+      Enabled: true
+      Head Length: 0.05000000074505806
+      Head Radius: 0.05000000074505806
+      Name: Pose
+      Shaft Length: 0.20000000298023224
+      Shaft Radius: 0.019999999552965164
+      Shape: Arrow
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        Filter size: 10
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /debug/goal_pose
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 255; 255; 255
@@ -213,25 +523,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 2.020890235900879
+      Distance: 2.588388681411743
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: -0.3431778848171234
-        Y: 0.6169372200965881
-        Z: 0.4080313444137573
+        X: 0.21776531636714935
+        Y: 0.241075798869133
+        Z: 0.1480957269668579
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.17479799687862396
+      Pitch: 0.5197982788085938
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 0.8921666145324707
+      Yaw: 0.01717342436313629
     Saved: ~
 Window Geometry:
   Displays:
@@ -239,7 +549,7 @@ Window Geometry:
   Height: 1016
   Hide Left Dock: false
   Hide Right Dock: true
-  QMainWindow State: 000000ff00000000fd0000000400000000000001bb0000033efc0200000008fb0000001200530065006c0065006300740069006f006e00000001e10000009b0000005c00fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c006100790073010000003d0000033e000000c900fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261000000010000015f0000053efc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a00560069006500770073000000006e0000053e000000a400fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000007360000005afc0100000002fb0000000800540069006d0065010000000000000736000002fb00fffffffb0000000800540069006d00650100000000000004500000000000000000000005750000033e00000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  QMainWindow State: 000000ff00000000fd0000000400000000000001bb00000342fc0200000008fb0000001200530065006c0065006300740069006f006e00000001e10000009b0000005c00fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c006100790073010000003b00000342000000c700fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261000000010000015f0000053efc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a00560069006500770073000000006e0000053e000000a000fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000007800000005afc0100000002fb0000000800540069006d00650100000000000007800000025300fffffffb0000000800540069006d00650100000000000004500000000000000000000005bf0000034200000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   Selection:
     collapsed: false
   Time:
@@ -248,6 +558,6 @@ Window Geometry:
     collapsed: false
   Views:
     collapsed: true
-  Width: 1846
-  X: 74
+  Width: 1920
+  X: 0
   Y: 27

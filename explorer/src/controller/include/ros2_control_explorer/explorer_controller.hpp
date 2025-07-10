@@ -15,34 +15,46 @@
 #ifndef ROS2_CONTROL_EXPLORER_CONTROLLER_HPP_
 #define ROS2_CONTROL_EXPLORER_CONTROLLER_HPP_
 
-#include <chrono>
 #include <memory>
-#include <mutex>
 #include <string>
-#include <unordered_map>
-#include <utility>
 #include <vector>
+#include <chrono>
+#include <iostream>
+#include <fstream>
+#include <functional>
+
+#include <controller_interface/controller_interface.hpp>
+#include "hardware_interface/types/hardware_interface_type_values.hpp"
+
+#include "Qontrol/Qontrol.hpp"
 
 #include "control_msgs/action/follow_joint_trajectory.hpp"
 #include "control_msgs/msg/joint_trajectory_controller_state.hpp"
-#include "controller_interface/controller_interface.hpp"
-#include "hardware_interface/types/hardware_interface_type_values.hpp"
-#include "rclcpp/duration.hpp"
-#include "rclcpp/subscription.hpp"
-#include "rclcpp/time.hpp"
-#include "rclcpp/timer.hpp"
-#include "rclcpp_lifecycle/lifecycle_publisher.hpp"
-#include "rclcpp_lifecycle/node_interfaces/lifecycle_node_interface.hpp"
-#include "realtime_tools/realtime_buffer.h"
 #include "trajectory_msgs/msg/joint_trajectory.hpp"
 #include "trajectory_msgs/msg/joint_trajectory_point.hpp"
+#include <geometry_msgs/msg/pose.hpp>
+#include <geometry_msgs/msg/pose_stamped.hpp>
+#include <std_msgs/msg/float64_multi_array.hpp>
+
+
+#include <rclcpp/rclcpp.hpp>
+#include <rclcpp/parameter_client.hpp>
+#include "rclcpp/duration.hpp"
+#include "rclcpp/time.hpp"
+#include "rclcpp/subscription.hpp"
+#include "rclcpp_lifecycle/lifecycle_publisher.hpp"
+#include "rclcpp_lifecycle/node_interfaces/lifecycle_node_interface.hpp"
+#include "rclcpp_lifecycle/state.hpp"
+
+using namespace Qontrol;
 
 namespace ros2_control_explorer
 {
 class RobotController : public controller_interface::ControllerInterface
 {
 public:
-  RobotController();
+
+  rclcpp::Logger logger_{rclcpp::get_logger("unnamed_controller")};
 
   controller_interface::InterfaceConfiguration command_interface_configuration() const override;
 
@@ -59,51 +71,31 @@ public:
   controller_interface::CallbackReturn on_activate(
     const rclcpp_lifecycle::State & previous_state) override;
 
-  controller_interface::CallbackReturn on_deactivate(
-    const rclcpp_lifecycle::State & previous_state) override;
+private:
+  void updateJointStates();
+  Eigen::VectorXd updateController(double dt);
 
-  controller_interface::CallbackReturn on_cleanup(
-    const rclcpp_lifecycle::State & previous_state) override;
+  void publish_poses();
+  
+  std::string urdf_content_;
+  Eigen::VectorXd qposition_;
+  Eigen::VectorXd qvelocity_;
+  pinocchio::SE3 goal_pose_;
+  double p_gains_ = 10.0;
+  Eigen::Matrix<double, 6, 1> p_gains_vect_;
+  std::vector<int> passage_;
+  int dof_ = 6;
 
-  controller_interface::CallbackReturn on_error(
-    const rclcpp_lifecycle::State & previous_state) override;
+  std::shared_ptr<Model::RobotModel<Model::RobotModelImplType::PINOCCHIO>> model;
+  std::shared_ptr<Qontrol::JointVelocityProblem> velocity_problem;
+  std::shared_ptr<Qontrol::Task::CartesianVelocity<Qontrol::ControlOutput::JointVelocity>> main_task;
+  std::shared_ptr<Task::JointVelocity<ControlOutput::JointVelocity>> regularisation_task;
+  Qontrol::RobotState robot_state;
 
-  controller_interface::CallbackReturn on_shutdown(
-    const rclcpp_lifecycle::State & previous_state) override;
+  rclcpp::Publisher<std_msgs::msg::Float64MultiArray>::SharedPtr publisher_;
+  rclcpp::Publisher<geometry_msgs::msg::PoseStamped>::SharedPtr goal_pose_publisher_;
+  rclcpp::Publisher<geometry_msgs::msg::PoseStamped>::SharedPtr current_pose_publisher_;
 
-protected:
-  std::vector<std::string> joint_names_;
-  std::vector<std::string> command_interface_types_;
-  std::vector<std::string> state_interface_types_;
-
-  rclcpp::Subscription<trajectory_msgs::msg::JointTrajectory>::SharedPtr joint_command_subscriber_;
-  realtime_tools::RealtimeBuffer<std::shared_ptr<trajectory_msgs::msg::JointTrajectory>>
-    traj_msg_external_point_ptr_;
-  bool new_msg_ = false;
-  rclcpp::Time start_time_;
-  std::shared_ptr<trajectory_msgs::msg::JointTrajectory> trajectory_msg_;
-  trajectory_msgs::msg::JointTrajectoryPoint point_interp_;
-
-  std::vector<std::reference_wrapper<hardware_interface::LoanedCommandInterface>>
-    joint_position_command_interface_;
-  std::vector<std::reference_wrapper<hardware_interface::LoanedCommandInterface>>
-    joint_velocity_command_interface_;
-  std::vector<std::reference_wrapper<hardware_interface::LoanedStateInterface>>
-    joint_position_state_interface_;
-  std::vector<std::reference_wrapper<hardware_interface::LoanedStateInterface>>
-    joint_velocity_state_interface_;
-
-  std::unordered_map<
-    std::string, std::vector<std::reference_wrapper<hardware_interface::LoanedCommandInterface>> *>
-    command_interface_map_ = {
-      {"position", &joint_position_command_interface_},
-      {"velocity", &joint_velocity_command_interface_}};
-
-  std::unordered_map<
-    std::string, std::vector<std::reference_wrapper<hardware_interface::LoanedStateInterface>> *>
-    state_interface_map_ = {
-      {"position", &joint_position_state_interface_},
-      {"velocity", &joint_velocity_state_interface_}};
 };
 
 }  // namespace ros2_control_explorer
